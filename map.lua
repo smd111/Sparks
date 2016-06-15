@@ -13,6 +13,7 @@
 		[4072] = {Name="Rem's tale ch.9", Cost=15000, Option=1, Index=10},
 		[4073] = {Name="Rem's tale ch.10", Cost=15000, Option=1, Index=11},
 		[28546] = {Name="Capacity ring", Cost=5000, Option=1, Index=12},
+                [9009] = {Name="Etched Memory", Cost=10000, Option=1, Index=13},
 		-- Skill Tomes 
 		[6147] = {Name="Mikhe's memo", Cost=200, Option=2, Index=0},
 		[6148] = {Name="Dagger enchiridion", Cost=200, Option=2, Index=1},
