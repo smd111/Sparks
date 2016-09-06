@@ -97,34 +97,51 @@ end
 
 
 windower.register_event('incoming chunk',function(id,data,modified,injected,blocked)
-	if id == 0x034 or id == 0x032 then
-	 if busy == true and pkt then
-		local packet = packets.new('outgoing', 0x05B)
-		packet["Target"]=pkt['Target']
-		--print(pkt['Target'])
-		packet["Option Index"]=pkt['Option Index']
-		--print(pkt['Option Index'])
-		packet["_unknown1"]=pkt['_unknown1']
-		--print(pkt['_unknown1'])
-		packet["Target Index"]=pkt['Target Index']
-		--print(pkt['Target Index'])
-		packet["Automated Message"]=false
-		packet["_unknown2"]=0
-		packet["Zone"]=pkt['Zone']
-		--print(pkt['Zone'])
-		packet["Menu ID"]=pkt['Menu ID']
-		--print(pkt['Menu ID'])
-		packets.inject(packet)
-		--print("sent")
-		local packet = packets.new('outgoing', 0x016, {
-		["Target Index"]=pkt['me'],
-		})
-		packets.inject(packet)
-		busy = false
-		pkt = {}
-		return true
-	 end
-	end
+    if id == 0x034 or id == 0x032 then
+        if busy == true and pkt then
+        local packet = packets.new('outgoing', 0x05B)
+        packet["Target"]=pkt['Target']
+        --print(pkt['Target'])
+        packet["Option Index"]=pkt['Option Index']
+        --print(pkt['Option Index'])
+        packet["_unknown1"]=pkt['_unknown1']
+        --print(pkt['_unknown1'])
+        packet["Target Index"]=pkt['Target Index']
+        --print(pkt['Target Index'])
+        packet["Automated Message"]=true
+        packet["_unknown2"]=0
+        packet["Zone"]=pkt['Zone']
+        --print(pkt['Zone'])
+        packet["Menu ID"]=pkt['Menu ID']
+        --print(pkt['Menu ID'])
+        packets.inject(packet)
+        --print("sent")
+        local packet = packets.new('outgoing', 0x05B)
+        packet["Target"]=pkt['Target']
+        --print(pkt['Target'])
+        packet["Option Index"]=0
+        --print(pkt['Option Index'])
+        packet["_unknown1"]=16384
+        --print(pkt['_unknown1'])
+        packet["Target Index"]=pkt['Target Index']
+        --print(pkt['Target Index'])
+        packet["Automated Message"]=false
+        packet["_unknown2"]=0
+        packet["Zone"]=pkt['Zone']
+        --print(pkt['Zone'])
+        packet["Menu ID"]=pkt['Menu ID']
+        --print(pkt['Menu ID'])
+        packets.inject(packet)
+        --print("sent")
+        local packet = packets.new('outgoing', 0x016, {
+        ["Target Index"]=pkt['me'],
+        })
+        packets.inject(packet)
+        busy = false
+        pkt = {}
+        return true
+        end
+    end
 	
 end)
 
